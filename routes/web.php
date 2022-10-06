@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WarrientyController;
+use App\Http\Controllers\DashboardController;
 
 
 Route::group(['middleware'=>['auth']],function(){
