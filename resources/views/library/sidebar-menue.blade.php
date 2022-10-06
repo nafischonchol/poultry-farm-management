@@ -27,7 +27,7 @@
             </a>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="{{route("cost.create")}}">
                         <div class="parent-icon icon-color-4">
                             <i class="fadeIn animated bx bx-store-alt"></i>
                         </div>
@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route("cost.index")}}">
                         <div class="parent-icon icon-color-5">
                             <i class="fadeIn animated bx bx-layer"></i>
                         </div>

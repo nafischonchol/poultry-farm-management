@@ -38,7 +38,7 @@
 	</div>
     	<!-- end wrapper -->
 	<!--start switcher-->
-    @include("library.switch-color")
+    {{-- @include("library.switch-color") --}}
 	<!--end switcher-->
 	@include('library.foot')
 	@yield('js')
