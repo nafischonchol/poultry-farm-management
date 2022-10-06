@@ -53,9 +53,8 @@
             <div class="card-body">
                 <div class="row">
                     @include("mgs.index")
-
-                    <div class="table-responsive">
-                        <table id="myproductList" class="table table-striped table-bordered text-center" style="width:100%">
+                    <div class="table-responsive col-md-12 col-sm-12">
+                        <table id="myproductList" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>তারিখ</th>

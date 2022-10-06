@@ -13,7 +13,7 @@
             <a href="{{ route('dashboard') }}">
                 <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
                 </div>
-                <div class="menu-title">Dashboard</div>
+                <div class="menu-title">ড্যাশবোর্ড</div>
             </a>
         </li>
 
@@ -23,7 +23,7 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon icon-color-1"><i class="fadeIn animated bx bx-collection"></i>
                 </div>
-                <div class="menu-title">Cost</div>
+                <div class="menu-title">খরচ</div>
             </a>
             <ul>
                 <li>
@@ -31,7 +31,7 @@
                         <div class="parent-icon icon-color-4">
                             <i class="fadeIn animated bx bx-store-alt"></i>
                         </div>
-                        <div class="menu-title">Add Cost</div>
+                        <div class="menu-title">নতুন খরচ অ্যাড</div>
                     </a>
                 </li>
                 <li>
@@ -39,7 +39,7 @@
                         <div class="parent-icon icon-color-5">
                             <i class="fadeIn animated bx bx-layer"></i>
                         </div>
-                        <div class="menu-title">Cost List</div>
+                        <div class="menu-title">খরচের হিসাব</div>
                     </a>
                 </li>
             </ul>
