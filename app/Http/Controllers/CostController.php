@@ -7,14 +7,17 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cost;
+use App\Models\Sheet;
 use Auth;
 class CostController extends Controller
 {
 
     public function index()
     {
-        $data = Cost::all();
-        return view("cost.index",['data'=>$data]);
+        $data = Cost::where("sheet_no",session('current_sheet'))->where("user_id",Auth::user()->id)->get();
+        $sheet_list = Sheet::where("user_id",Auth::user()->id)->get();
+
+        return view("cost.index",['data'=>$data,'sheet_list'=>$sheet_list]);
     }
 
 
@@ -48,35 +51,25 @@ class CostController extends Controller
         return redirect(route("cost.index"))->with("success","Cost created successfully!");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function fiter(Request $request)
     {
-        //
+        $query = Cost::where("sheet_no",$request->sheet_no)->where("user_id",Auth::user()->id);
+        if($request->category !=0)
+            $query->where("category",$request->category);
+        if(!empty($request->name))
+            $query->where('name', 'like', '%' . $request->name . '%');
+
+        $data = $query->get();
+        $sheet_list = Sheet::where("user_id",Auth::user()->id)->get();
+        return view("cost.index",['data'=>$data,'sheet_list'=>$sheet_list]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //

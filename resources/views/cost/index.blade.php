@@ -14,21 +14,27 @@
                 </div>
             </div>
             <div class="card-header">
-                <form method="get" action="#" class="row">
+                <form method="get" action="{{route("cost.filter")}}" class="row">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-12 col-md-3 col-sm-3">
                         <div class="form-group m-auto">
+                            <small>শিট নাম্বার</small>
                             <select class="form-control text-center" name="sheet_no">
-                                <option value="0">শিট নাম্বার</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
+                               @if (isset($sheet_list[0]))
+                                    @foreach ($sheet_list as $item)
+                                        @if ($item->sheet_no == session("current_sheet"))
+                                            <option selected>{{$item->sheet_no}}</option>
+                                        @else
+                                            <option>{{$item->sheet_no}}</option>
+                                        @endif
+                                    @endforeach
+                               @endif
                             </select>
                         </div>
                     </div>
                     <div class="col-12 col-md-3 col-sm-3">
                         <div class="form-group m-auto">
+                            <small>খরচের খাত</small>
                             <select class="form-control text-center" name="category">
                                 <option value=0>খরচের খাত</option>
                                 <option>বাচ্চা</option>
@@ -41,11 +47,13 @@
                     </div>
                     <div class="col-12 col-md-4 col-sm-4">
                         <div class="form-group m-auto">
-                            <input type="text" class="form-control text-center" placeholder="প্রোডাক্ট নাম">
+                            <small>প্রোডাক্ট নাম</small>
+                            <input type="text" class="form-control text-center"  name="name">
                         </div>
                     </div>
 
                     <div class="col-12 col-md-2 col-sm-2">
+                        <br>
                         <button type="submit" class="btn btn-info col">খুজো</button>
                     </div>
                 </form>
@@ -64,13 +72,20 @@
                                     <th>পরিমান</th>
                                     <th>প্রতি পিস মূল্য</th>
                                     <th>মোট মূল্য</th>
-                                    <th>অতিরিক্ত নোট</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if(isset($data[0]))
+                                    @php
+                                        $totQty=0;
+                                        $totPrice=0;
+                                    @endphp
                                     @foreach ($data as $item)
+                                        @php
+                                            $totQty += $item->qty;
+                                            $totPrice += ($item->price * $item->qty);
+                                        @endphp
                                         <tr>
                                             <td>{{$item->date}}</td>
                                             <td>{{$item->name}}</td>
@@ -79,10 +94,15 @@
                                             <td>{{ $item->qty}}</td>
                                             <td>{{ $item->price}}</td>
                                             <td>{{ $item->price * $item->qty}}</td>
-                                            <td>{{ $item->note}}</td>
                                             <td><a href="" class="btn btn-info">Edit</a></td>
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        <th colspan="4" class="text-right">মোট পরিমান</th>
+                                        <td>{{$totQty}} পিস</td>
+                                        <th>মোট মূল্য</th>
+                                        <td colspan="2">{{$totPrice}}৳</td>
+                                    </tr>
                                 @endif
                             </tbody>
                         </table>

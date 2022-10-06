@@ -15,7 +15,15 @@ return new class extends Migration
     {
         Schema::create('sheets', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_id");
+            $table->integer("sheet_no");
+            $table->integer("current_sheet")->default(0)->comment("1 thakle oita current sheet");
+            $table->date("start_date")->nullable();
+            $table->date("end_date")->nullable();
+            $table->string('status')->nullable();
+            $table->text("_token")->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -10,14 +10,14 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="post" action="" >
+            <form method="post" action="{{route("sheet.store")}}" >
 
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="modal-body">
                     <div class="form-group">
                         <small>শিট নাম্বার</small>
-                        <input type="number" class="form-control  radius-30" name="stock" required>
+                        <input type="number" class="form-control  radius-30" name="sheet_no" required>
                     </div>
                     <div class="form-group">
                         <small>শিট শুরু তারিখ</small>
