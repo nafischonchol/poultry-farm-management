@@ -13,6 +13,8 @@ class BacchaMrittu extends Model
         'sheet_no',
         "qty",
         "reason",
-        'date'
+        "age",
+        'date',
+        "note"
     ];
 }

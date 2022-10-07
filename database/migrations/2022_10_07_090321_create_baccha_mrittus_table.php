@@ -19,7 +19,9 @@ return new class extends Migration
             $table->integer("sheet_no");
             $table->integer("qty")->default(0);
             $table->string("reason")->nullable();
+            $table->integer("age")->default(0);
             $table->date("date")->nullable();
+            $table->string("note")->nullable();
             $table->timestamps();
         });
     }

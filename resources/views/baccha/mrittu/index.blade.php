@@ -10,13 +10,18 @@
                         <div class="col-md-8">
                             <h4 class="card-title pull-left m-auto">বাচ্চা মৃত্যু হিসাব</h4>
                         </div>
+                        <div class="col-md-4 text-right">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#mrittuAdd">মৃত্যু যোগ করুন</button>
+                        </div>
                     </div>
                 </div>
+                @include("baccha.mrittu.create")
             </div>
             <div class="card-header">
                 <form method="get" action="{{route("cost.filter")}}" class="row">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="col-12 col-md-3 col-sm-3">
+                    <div class="col-md-2 col-sm-2"></div>
+                    <div class="col-12 col-md-6 col-sm-6">
                         <div class="form-group m-auto">
                             <small>শিট নাম্বার</small>
                             <select class="form-control text-center" name="sheet_no">
@@ -30,25 +35,6 @@
                                     @endforeach
                                @endif
                             </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-3 col-sm-3">
-                        <div class="form-group m-auto">
-                            <small>খরচের খাত</small>
-                            <select class="form-control text-center" name="category">
-                                <option value=0>খরচের খাত</option>
-                                <option>বাচ্চা</option>
-                                <option>খাদ্য</option>
-                                <option>ঔষধ</option>
-                                <option>অটো ভাড়া</option>
-                                <option>অন্যান্য</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 col-sm-4">
-                        <div class="form-group m-auto">
-                            <small>প্রোডাক্ট নাম</small>
-                            <input type="text" class="form-control text-center"  name="name">
                         </div>
                     </div>
 
@@ -65,13 +51,12 @@
                         <table id="myproductList" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
+                                    <th>শিট নাম্বার</th>
                                     <th>তারিখ</th>
-                                    <th>প্রোডাক্ট নাম</th>
-                                    <th>খরচের খাত</th>
-                                    <th>দোকান এর ঠিকানা</th>
+                                    <th>বয়স</th>
                                     <th>পরিমান</th>
-                                    <th>প্রতি পিস মূল্য</th>
-                                    <th>মোট মূল্য</th>
+                                    <th>কারণ</th>
+                                    <th>অতিরিক্ত নোট</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -79,29 +64,24 @@
                                 @if(isset($data[0]))
                                     @php
                                         $totQty=0;
-                                        $totPrice=0;
                                     @endphp
                                     @foreach ($data as $item)
                                         @php
                                             $totQty += $item->qty;
-                                            $totPrice += ($item->price * $item->qty);
                                         @endphp
                                         <tr>
+                                            <td>{{$item->sheet_no}}</td>
                                             <td>{{$item->date}}</td>
-                                            <td>{{$item->name}}</td>
-                                            <td>{{$item->category}}</td>
-                                            <td>{{$item->shop_address}}</td>
-                                            <td>{{ $item->qty}}</td>
-                                            <td>{{ $item->price}}</td>
-                                            <td>{{ $item->price * $item->qty}}</td>
+                                            <td>{{$item->age}} দিন</td>
+                                            <td>{{$item->qty}}</td>
+                                            <td>{{$item->reason}}</td>
+                                            <td>{{$item->note}}</td>
                                             <td><a href="" class="btn btn-info">Edit</a></td>
                                         </tr>
                                     @endforeach
                                     <tr>
-                                        <th colspan="4" class="text-right">মোট পরিমান</th>
-                                        <td>{{$totQty}} পিস</td>
-                                        <th>মোট মূল্য</th>
-                                        <td colspan="2">{{$totPrice}}৳</td>
+                                        <th colspan="3" class="text-right">মোট পরিমান</th>
+                                        <td colspan="4">{{$totQty}} পিস</td>
                                     </tr>
                                 @endif
                             </tbody>
