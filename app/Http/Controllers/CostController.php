@@ -99,9 +99,9 @@ class CostController extends Controller
             ]);
 
             $data = $request->input();
-            if($data['category'] == -1 || $data['category'] == 0 )
+            if($data['category'] == -1 )
                 $data['category'] = trim($data['category_onno']);
-            else
+            else if($data['category'] != $data['old_category'])
             {
                 $data['category'] = trim($data['category']);
                 $data['category_onno'] = NULL;

@@ -23,6 +23,7 @@
                         <div class="form">
                             <form class="form-horizontal" method="post" action="{{route("cost.update",['id'=>$data->id])}}" >
                                 @csrf
+                                <input type="hidden" name="old_category" value="{{$data->category}}">
                                 <div class="form-row">
                                     <div class="form-group mb-2 col-md-6">
                                         <label>শিট নাম্বার</label><span class="text-danger">*</span>
@@ -48,7 +49,7 @@
                                         <label>খরচের খাত</label><span class="text-danger">*</span>
                                         <div class="input-group">
                                             <select class="form-control" name="category" id="category">
-                                                <option value="0">{{$data->category}}</option>
+                                                <option>{{$data->category}}</option>
                                                 <option>বাচ্চা</option>
                                                 <option>খাদ্য</option>
                                                 <option>ঔষধ</option>

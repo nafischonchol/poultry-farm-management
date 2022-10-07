@@ -40,4 +40,9 @@ class BacchaMrittuRepository implements IBacchaMrittuRepository
         return BacchaMrittu::where("sheet_no",$data['sheet_no'])->where("user_id",Auth::user()->id)->get();
     }
 
+    public function mrittuTotal($sheet_no)
+    {
+        return BacchaMrittu::where("sheet_no",$sheet_no)->where("user_id",Auth::user()->id)->selectRaw('sum(qty) as total')->first();
+    }
+
 }
