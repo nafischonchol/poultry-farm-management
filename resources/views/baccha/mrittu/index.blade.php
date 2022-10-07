@@ -81,7 +81,7 @@
                                             <td class="text-center">
                                                 <button class="btn btn-info editItem" data-toggle="modal" data-target="#mrittuEdit" data-id="{{$item->id}}">Edit</button>
 
-                                                <a href="{{route('baccha.mirttu.distroy',['id'=>$item->id])}}" class="btn btn-danger">Delete</a>
+                                                <a href="{{route('baccha.mirttu.destroy',['id'=>$item->id])}}" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

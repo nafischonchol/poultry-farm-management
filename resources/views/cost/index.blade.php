@@ -10,6 +10,9 @@
                         <div class="col-md-8">
                             <h4 class="card-title pull-left m-auto">খরচের হিসাব</h4>
                         </div>
+                        <div class="col-md-4 text-right">
+                            <a class="btn btn-primary" href="{{route('cost.create')}}">খরচ অ্যাড</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,7 +75,7 @@
                                     <th>পরিমান</th>
                                     <th>প্রতি পিস মূল্য</th>
                                     <th>মোট মূল্য</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,7 +97,10 @@
                                             <td>{{ $item->qty}}</td>
                                             <td>{{ $item->price}}</td>
                                             <td>{{ $item->price * $item->qty}}</td>
-                                            <td><a href="" class="btn btn-info">Edit</a></td>
+                                            <td class="text-center">
+                                                <a href="{{route('cost.edit',['id'=>$item->id])}}" class="btn btn-info">Edit</a>
+                                                <a href="{{route('cost.destroy',['id'=>$item->id])}}" class="btn btn-danger">Delete</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     <tr>

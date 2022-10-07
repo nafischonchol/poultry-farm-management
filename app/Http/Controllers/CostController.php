@@ -69,7 +69,55 @@ class CostController extends Controller
         return redirect(route("cost.index"))->with("success","Cost created successfully!");
     }
 
+    public function edit($id)
+    {
+        try{
+            $data = $this->mainRepo->get($id);
+            if(!isset($data))
+                return back()->with("warning","খরচের হিসাব খুঁজে পাওয়া যায়নি");
 
+            $sheet_list = $this->sheet->all();
+            return view("cost.edit",['data'=>$data,'sheet_list'=>$sheet_list]);
+        }
+        catch(\Exception $e)
+        {
+            return back()->with("warning",$e->getMessage());
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try{
+            $request->validate([
+                'date' => ['required', 'string', 'max:255'],
+                'sheet_no' => ['required', 'string', 'max:255'],
+                'shop_address' => ['required', 'string'],
+                'category' => ['required', 'string', 'max:255'],
+                'price' => ['required', 'max:255'],
+                'qty' => ['required',  'max:255']
+            ]);
+
+            $data = $request->input();
+            if($data['category'] == -1 || $data['category'] == 0 )
+                $data['category'] = trim($data['category_onno']);
+            else
+            {
+                $data['category'] = trim($data['category']);
+                $data['category_onno'] = NULL;
+            }
+
+            $data['name'] = trim($data['name']);
+            $this->mainRepo->update($data,$id);
+            DB::commit();
+        }
+        catch(\Exception $e)
+        {
+            DB::rollback();
+            return back()->with("warning",$e->getMessage());
+        }
+        return back()->with("success","খরচ সঠিক ভাবে এডিট করা হয়েছে");
+    }
     public function filter(Request $request)
     {
         $data = $this->mainRepo->filter($request->input());
@@ -77,24 +125,22 @@ class CostController extends Controller
         return view("cost.index",['data'=>$data,'sheet_list'=>$sheet_list]);
     }
 
-    public function edit($id)
-    {
-        //
-    }
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try{
+
+            $this->mainRepo->delete($id);
+            DB::commit();
+        }
+        catch(\Exception $e)
+        {
+            DB::rollback();
+            return back()->with("warning",$e->getMessage());
+        }
+        return back()->with("success","খরচ সঠিক ভাবে বাদ দেওয়া হয়েছে");
     }
 }

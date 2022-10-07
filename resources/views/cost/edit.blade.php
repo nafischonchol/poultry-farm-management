@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-md-8">
-                            <h4 class="card-title pull-left m-auto">নতুন খরচ অ্যাড</h4>
+                            <h4 class="card-title pull-left m-auto">খরচ এডিট কর</h4>
                         </div>
                         <div class="col-md-4 text-right">
                             <a class="btn btn-primary" href="{{route('cost.index')}}">খরচের হিসাব</a>
@@ -21,7 +21,7 @@
                     <div class="col-md-12">
                         @include('mgs.index')
                         <div class="form">
-                            <form class="form-horizontal" method="post" action="{{route("cost.store")}}" >
+                            <form class="form-horizontal" method="post" action="{{route("cost.update",['id'=>$data->id])}}" >
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group mb-2 col-md-6">
@@ -29,7 +29,7 @@
                                         <select class="form-control" name="sheet_no">
                                            @if (isset($sheet_list[0]))
                                                @foreach ($sheet_list as $item)
-                                                    @if (session("current_sheet") == $item->sheet_no)
+                                                    @if ($data->sheet_no == $item->sheet_no)
                                                         <option selected>{{$item->sheet_no}}</option>
                                                     @else
                                                         <option>{{$item->sheet_no}}</option>
@@ -41,13 +41,14 @@
                                     <div class="form-group mb-2 col-md-6">
                                         <label>তারিখ</label><span class="text-danger">*</span>
                                         <div class="input-group">
-                                            <input type="date" class="form-control" name="date" required value="{{date('Y-m-d')}}">
+                                            <input type="date" class="form-control" name="date" required value="{{$data->date}}">
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6">
                                         <label>খরচের খাত</label><span class="text-danger">*</span>
                                         <div class="input-group">
                                             <select class="form-control" name="category" id="category">
+                                                <option value="0">{{$data->category}}</option>
                                                 <option>বাচ্চা</option>
                                                 <option>খাদ্য</option>
                                                 <option>ঔষধ</option>
@@ -59,50 +60,50 @@
                                     <div class="form-group mb-2 col-md-6" id="category_onno_div">
                                         <label>অন্যান্য খাত উল্লেখ করুন</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="category_onno"  >
+                                            <input type="text" class="form-control" name="category_onno"  value="{{$data->category_onno}}">
                                         </div>
                                     </div>
 
                                     <div class="form-group mb-2 col-md-6">
                                         <label>প্রোডাক্ট নাম</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="name" >
+                                            <input type="text" class="form-control" name="name" value="{{$data->name}}">
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6">
                                         <label>দোকান এর ঠিকানা</label><span class="text-danger">*</span>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="shop_address" >
+                                            <input type="text" class="form-control" name="shop_address" value="{{$data->shop_address}}">
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6">
                                         <label>প্রতি পিস মূল্য</label><span class="text-danger">*</span>
                                         <div class="input-group">
-                                            <input type="number" class="form-control" name="price" required >
+                                            <input type="number" class="form-control" name="price" required value="{{$data->price}}" >
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6">
                                         <label>পরিমান</label><span class="text-danger">*</span>
                                         <div class="input-group">
-                                            <input type="number" class="form-control" name="qty" required >
+                                            <input type="number" class="form-control" name="qty" required value="{{$data->qty}}">
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6" id="bonus_qty_div">
                                         <label>বোনাস পরিমান</label>
                                         <div class="input-group">
-                                            <input type="number" class="form-control" name="bonus_qty" value=0>
+                                            <input type="number" class="form-control" name="bonus_qty" value="{{$data->bonus_qty}}">
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-12">
                                         <label>অতিরিক্ত নোট</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="note" >
+                                            <input type="text" class="form-control" name="note" value="{{$data->note}}">
                                         </div>
                                     </div>
 
                                     <div class="form-group mb-2 mt-2 col-md-12">
                                         <button class="btn btn-primary btn-block site-color-bg form-control" id="btnlogin" type="submit">
-                                            তৈরি করুন</button>
+                                            এডিট করুন</button>
                                     </div>
                                 </div>
                             </form>
@@ -116,18 +117,22 @@
 @endsection
 @section("js")
 <script>
+    function controlCategoryOnnoDiv()
+    {
+        let category = $("#category").val();
+        if(category == -1)
+        {
+            $("#category_onno_div").show();
+        }
+        else
+        {
+            $("#category_onno_div").hide();
+        }
+    }
     $(document).ready(function(){
-        $("#category_onno_div").hide();
+        controlCategoryOnnoDiv();
         $("#category").change(function(){
-            let category = $("#category").val();
-            if(category == -1)
-            {
-                $("#category_onno_div").show();
-            }
-            else
-            {
-                $("#category_onno_div").hide();
-            }
+            controlCategoryOnnoDiv();
         })
     });
 </script>

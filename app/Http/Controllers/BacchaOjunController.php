@@ -74,7 +74,7 @@ class BacchaOjunController extends Controller
         return back()->with("success","বাচ্চা ওজন সঠিক ভাবে এডিট করা হয়েছে");
     }
 
-    function distroy($id)
+    function destroy($id)
     {
         DB::beginTransaction();
         try{

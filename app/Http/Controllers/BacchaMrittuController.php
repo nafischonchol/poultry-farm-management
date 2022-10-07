@@ -72,7 +72,7 @@ class BacchaMrittuController extends Controller
         return back()->with("success","বাচ্চা মৃত্যু সঠিক ভাবে এডিট করা হয়েছে");
     }
 
-    function distroy($id)
+    function destroy($id)
     {
         DB::beginTransaction();
         try{
