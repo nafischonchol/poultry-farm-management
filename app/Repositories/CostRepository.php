@@ -37,7 +37,7 @@ class CostRepository implements ICostRepository
         return Cost::destroy($id);
     }
 
-    public function fiter(array $data)
+    public function filter(array $data)
     {
         $query = Cost::where("sheet_no",$data['sheet_no'])->where("user_id",Auth::user()->id);
         if($data['category'] == -1)

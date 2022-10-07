@@ -10,5 +10,5 @@ interface ICostRepository
     public function get($id);
     public function update(array $data,$id);
     public function delete($id);
-    public function fiter(array $data);
+    public function filter(array $data);
 }

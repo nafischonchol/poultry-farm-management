@@ -18,6 +18,10 @@ class RepositoryServiceProvider extends ServiceProvider
             "App\Repositories\ICostRepository",
             "App\Repositories\CostRepository"
         );
+        $this->app->bind(
+            "App\Repositories\IBacchaOjunRepository",
+            "App\Repositories\BacchaOjunRepository"
+        );
 
 
     }

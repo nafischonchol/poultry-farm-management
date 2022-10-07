@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('baccha_mrittus', function (Blueprint $table) {
+        Schema::create('baccha_ojuns', function (Blueprint $table) {
             $table->id();
             $table->integer("user_id");
             $table->integer("sheet_no");
             $table->integer("qty")->default(0);
-            $table->string("reason")->nullable();
+            $table->string("kg")->nullable();
             $table->integer("age")->default(0);
             $table->date("date")->nullable();
             $table->string("note")->nullable();
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('baccha_mrittus');
+        Schema::dropIfExists('baccha_ojuns');
     }
 };

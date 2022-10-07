@@ -2,6 +2,7 @@
 namespace App\Repositories;
 use App\Models\BacchaMrittu;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class BacchaMrittuRepository implements IBacchaMrittuRepository
 {
@@ -32,6 +33,11 @@ class BacchaMrittuRepository implements IBacchaMrittuRepository
     public function delete($id)
     {
         return BacchaMrittu::destroy($id);
+    }
+
+    public function filter(array $data)
+    {
+        return BacchaMrittu::where("sheet_no",$data['sheet_no'])->where("user_id",Auth::user()->id)->get();
     }
 
 }

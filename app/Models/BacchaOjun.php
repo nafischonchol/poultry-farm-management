@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BacchaMrittu extends Model
+class BacchaOjun extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -14,7 +14,7 @@ class BacchaMrittu extends Model
         'user_id',
         'sheet_no',
         "qty",
-        "reason",
+        "kg",
         "age",
         'date',
         "note"

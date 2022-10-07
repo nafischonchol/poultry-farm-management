@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-interface IBacchaMrittuRepository
+interface IBacchaOjunRepository
 {
     public function all($sheet_no);
     public function store(array $data);

@@ -8,19 +8,19 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-md-8">
-                            <h4 class="card-title pull-left m-auto">বাচ্চা মৃত্যু হিসাব</h4>
+                            <h4 class="card-title pull-left m-auto">বাচ্চা ওজন হিসাব</h4>
                         </div>
                         <div class="col-md-4 text-right">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#mrittuAdd">মৃত্যু যোগ করুন</button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#ojunAdd">ওজন যোগ করুন</button>
                         </div>
                     </div>
                 </div>
-                @include("baccha.mrittu.create")
-                @include("baccha.mrittu.edit")
+                @include("baccha.ojun.create")
+                @include("baccha.ojun.edit")
 
             </div>
             <div class="card-header">
-                <form method="get" action="{{route("baccha.mirttu.filter")}}" class="row">
+                <form method="get" action="{{route("baccha.ojun.filter")}}" class="row">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-md-2 col-sm-2"></div>
                     <div class="col-12 col-md-6 col-sm-6">
@@ -57,7 +57,7 @@
                                     <th>তারিখ</th>
                                     <th>বয়স</th>
                                     <th>পরিমান</th>
-                                    <th>কারণ</th>
+                                    <th>ওজন</th>
                                     <th>অতিরিক্ত নোট</th>
                                     <th class="text-center">Action</th>
                                 </tr>
@@ -66,28 +66,31 @@
                                 @if(isset($data[0]))
                                     @php
                                         $totQty=0;
+                                        $totKg=0;
                                     @endphp
                                     @foreach ($data as $item)
                                         @php
                                             $totQty += $item->qty;
+                                            $totKg += $item->kg;
                                         @endphp
                                         <tr>
                                             <td>{{$item->sheet_no}}</td>
                                             <td>{{$item->date}}</td>
                                             <td>{{$item->age}} দিন</td>
                                             <td>{{$item->qty}} পিস</td>
-                                            <td>{{$item->reason}}</td>
+                                            <td>{{$item->kg}} KG</td>
                                             <td>{{$item->note}}</td>
                                             <td class="text-center">
-                                                <button class="btn btn-info editItem" data-toggle="modal" data-target="#mrittuEdit" data-id="{{$item->id}}">Edit</button>
+                                                <button class="btn btn-info editItem" data-toggle="modal" data-target="#ojunEdit" data-id="{{$item->id}}">Edit</button>
 
-                                                <a href="{{route('baccha.mirttu.distroy',['id'=>$item->id])}}" class="btn btn-danger">Delete</a>
+                                                <a href="{{route('baccha.ojun.distroy',['id'=>$item->id])}}" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
                                     <tr>
-                                        <th colspan="3" class="text-right">মোট পরিমান</th>
-                                        <td colspan="4">{{$totQty}} পিস</td>
+                                        <th colspan="3" class="text-right">মোট</th>
+                                        <td>{{$totQty}} পিস</td>
+                                        <td colspan="3">{{$totKg}} KG</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -121,7 +124,7 @@
                     $("#qty").val(data.qty)
                     $("#age").val(data.age)
                     $("#date").val(data.date)
-                    $("#reason").val(data.reason)
+                    $("#kg").val(data.kg)
                 }
             });
 

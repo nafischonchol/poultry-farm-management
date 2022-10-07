@@ -70,9 +70,9 @@ class CostController extends Controller
     }
 
 
-    public function fiter(Request $request)
+    public function filter(Request $request)
     {
-        $data = $this->mainRepo->fiter($request->input());
+        $data = $this->mainRepo->filter($request->input());
         $sheet_list = $this->sheet->all();
         return view("cost.index",['data'=>$data,'sheet_list'=>$sheet_list]);
     }
