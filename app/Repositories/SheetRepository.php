@@ -10,6 +10,10 @@ class SheetRepository implements ISheetRepository
     {
         return Sheet::where("user_id",Auth::user()->id)->get();
     }
+    public function currentSheet()
+    {
+        return Sheet::where("user_id",Auth::user()->id)->where("current_sheet",1)->first();
+    }
     public function store(array $data)
     {
         return Sheet::create($data);

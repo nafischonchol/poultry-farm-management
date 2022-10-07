@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("shop_address")->nullable();
             $table->date("date");
             $table->string('category');
+            $table->string("category_onno")->nullable();
             $table->string('name')->nullable();
             $table->string('note')->nullable();
             $table->string('price');

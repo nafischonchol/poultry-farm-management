@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sheet;
-use App\Models\Cost;
-
+use App\Repositories\ISheetRepository;
+use App\Repositories\ICostRepository;
 use Auth;
+
 class DashboardController extends Controller
 {
+
+    private $cost;
+    private $sheet;
+    public function __construct(ICostRepository $cost,ISheetRepository $sheet)
+    {
+        $this->cost = $cost;
+        $this->sheet = $sheet;
+    }
+
     function index()
     {
-        $current_sheet_info = Sheet::where("user_id",Auth::user()->id)->where("current_sheet",1)->first();
-        $sheet_list = Sheet::where("user_id",Auth::user()->id)->get();
+        $current_sheet_info = $this->sheet->currentSheet();
+        $sheet_list = $this->sheet->all();
+
         $current_sheet = 0;
         $capital = 0;
         if(isset($current_sheet_info))
@@ -22,12 +32,12 @@ class DashboardController extends Controller
             session()->put("current_sheet",$current_sheet);
         }
 
-        $cost = $this->getCost($current_sheet,$capital);
+        $cost = $this->getCost($capital);
 
         return view("dashboard.dashboard",['sheet_list'=>$sheet_list,'current_sheet'=>$current_sheet,"cost"=>$cost]);
     }
 
-    private function getCost($current_sheet,$capital)
+    private function getCost($capital)
     {
         $cost['capital'] = $capital;
         $cost['left_capital'] = $capital;
@@ -43,7 +53,7 @@ class DashboardController extends Controller
         $cost['baccha_bonus_qty'] =0;
         $cost['total_baccha_qty'] = 0;
 
-        $data = Cost::where("sheet_no",$current_sheet)->where("user_id",Auth::user()->id)->groupBy("category")->selectRaw('sum(price*qty) as total,sum(qty) as totQty,sum(bonus_qty) as totBonusQty, category')->get();
+        $data = $this->cost->costTotal();
 
         if(isset($data[0]))
         {

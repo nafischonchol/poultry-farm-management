@@ -10,6 +10,10 @@ class CostRepository implements ICostRepository
     {
         return Cost::where("sheet_no",session('current_sheet'))->where("user_id",Auth::user()->id)->get();
     }
+    public function costTotal()
+    {
+        return Cost::where("sheet_no",session('current_sheet'))->where("user_id",Auth::user()->id)->groupBy("category")->selectRaw('sum(price*qty) as total,sum(qty) as totQty,sum(bonus_qty) as totBonusQty, category')->get();
+    }
     public function store(array $data)
     {
         return Cost::create($data);
@@ -36,8 +40,13 @@ class CostRepository implements ICostRepository
     public function fiter(array $data)
     {
         $query = Cost::where("sheet_no",$data['sheet_no'])->where("user_id",Auth::user()->id);
-        if($data['category'] !=0)
+        if($data['category'] == -1)
+        {
+            $query->whereNotNull("category_onno");
+        }
+        else if($data['category'] !=0)
             $query->where("category",trim($data['category']));
+
         if(!empty($data['name']))
             $query->where('name', 'like', '%' . trim($data['name']) . '%');
 

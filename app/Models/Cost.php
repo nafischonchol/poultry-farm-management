@@ -18,6 +18,7 @@ class Cost extends Model
         'shop_address',
         'date',
         'category',
+        "category_onno",
         'name',
         'note',
         'price',

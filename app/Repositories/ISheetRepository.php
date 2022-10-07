@@ -5,6 +5,7 @@ namespace App\Repositories;
 interface ISheetRepository
 {
     public function all();
+    public function currentSheet();
     public function store(array $data);
     public function get($id);
     public function update(array $data,$id);

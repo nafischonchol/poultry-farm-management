@@ -41,7 +41,7 @@
                                 <option>খাদ্য</option>
                                 <option>ঔষধ</option>
                                 <option>অটো ভাড়া</option>
-                                <option>অন্যান্য</option>
+                                <option value="-1">অন্যান্য</option>
                             </select>
                         </div>
                     </div>

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
-use App\Models\Cost;
 use Auth;
 use App\Repositories\ISheetRepository;
 use App\Repositories\ICostRepository;
@@ -52,7 +51,10 @@ class CostController extends Controller
             if($data['category'] == -1)
                 $data['category'] = trim($data['category_onno']);
             else
+            {
                 $data['category'] = trim($data['category']);
+                $data['category_onno'] = NULL;
+            }
 
             $data['name'] = trim($data['name']);
             $data['user_id'] = Auth::user()->id;

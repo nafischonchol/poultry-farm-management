@@ -45,7 +45,7 @@
                                         <label>খরচের খাত</label><span class="text-danger">*</span>
                                         <div class="input-group">
                                             <select class="form-control" name="category" id="category">
-                                                <option value="1">বাচ্চা</option>
+                                                <option>বাচ্চা</option>
                                                 <option>খাদ্য</option>
                                                 <option>ঔষধ</option>
                                                 <option>অটো ভাড়া</option>
