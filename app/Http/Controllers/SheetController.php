@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
-use App\Models\Sheet;
 use Auth;
+use App\Repositories\ISheetRepository;
 
 class SheetController extends Controller
 {
+    private $mainRepo;
+    public function __construct(ISheetRepository $mainRepo)
+    {
+        $this->mainRepo = $mainRepo;
+    }
+
     public function setCurrent(Request $request)
     {
         DB::beginTransaction();
@@ -20,8 +26,7 @@ class SheetController extends Controller
             $data = $request->input();
             $data['user_id'] = Auth::user()->id;
             $data['current_sheet'] = 1;
-            Sheet::where("user_id",Auth::user()->id)->update(['current_sheet'=>0]);
-            Sheet::where("user_id",Auth::user()->id)->where('sheet_no',$request->sheet_no)->update($data);
+            $this->mainRepo->update($data,$request->sheet_no);
             DB::commit();
         }
         catch(\Exception $e)
@@ -41,7 +46,7 @@ class SheetController extends Controller
             ]);
             $data = $request->input();
             $data['user_id'] = Auth::user()->id;
-            Sheet::create($data);
+            $this->mainRepo->store($data);
             DB::commit();
         }
         catch(\Exception $e)

@@ -7,24 +7,32 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cost;
-use App\Models\Sheet;
 use Auth;
+use App\Repositories\ISheetRepository;
+use App\Repositories\ICostRepository;
+
+
 class CostController extends Controller
 {
+    private $mainRepo;
+    private $sheet;
+    public function __construct(ICostRepository $mainRepo,ISheetRepository $sheet)
+    {
+        $this->mainRepo = $mainRepo;
+        $this->sheet = $sheet;
+    }
 
     public function index()
     {
-        $data = Cost::where("sheet_no",session('current_sheet'))->where("user_id",Auth::user()->id)->get();
-        $sheet_list = Sheet::where("user_id",Auth::user()->id)->get();
-
+        $data = $this->mainRepo->all();
+        $sheet_list = $this->sheet->all();
         return view("cost.index",['data'=>$data,'sheet_list'=>$sheet_list]);
     }
 
 
     public function create()
     {
-        $sheet_list = Sheet::where("user_id",Auth::user()->id)->get();
-
+        $sheet_list = $this->sheet->all();
         return view("cost.create",['sheet_list'=>$sheet_list]);
     }
 
@@ -48,7 +56,7 @@ class CostController extends Controller
 
             $data['name'] = trim($data['name']);
             $data['user_id'] = Auth::user()->id;
-            Cost::create($data);
+            $this->mainRepo->store($data);
             DB::commit();
         }
         catch(\Exception $e)
@@ -62,14 +70,8 @@ class CostController extends Controller
 
     public function fiter(Request $request)
     {
-        $query = Cost::where("sheet_no",$request->sheet_no)->where("user_id",Auth::user()->id);
-        if($request->category !=0)
-            $query->where("category",trim($request->category));
-        if(!empty($request->name))
-            $query->where('name', 'like', '%' . trim($request->name) . '%');
-
-        $data = $query->get();
-        $sheet_list = Sheet::where("user_id",Auth::user()->id)->get();
+        $data = $this->mainRepo->fiter($request->input());
+        $sheet_list = $this->sheet->all();
         return view("cost.index",['data'=>$data,'sheet_list'=>$sheet_list]);
     }
 

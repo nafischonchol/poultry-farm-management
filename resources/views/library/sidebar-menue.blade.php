@@ -18,7 +18,7 @@
         </li>
 
 
-        <li class="menu-label">COST</li>
+        <li class="menu-label">খরচ</li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon icon-color-1"><i class="fadeIn animated bx bx-collection"></i>
@@ -40,6 +40,34 @@
                             <i class="fadeIn animated bx bx-layer"></i>
                         </div>
                         <div class="menu-title">খরচের হিসাব</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li class="menu-label">বাচ্চা</li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon icon-color-1"><i class="fadeIn animated bx bx-collection"></i>
+                </div>
+                <div class="menu-title">বাচ্চা</div>
+            </a>
+            <ul>
+                <li>
+                    <a href="{{route("baccha.mirttu.index")}}">
+                        <div class="parent-icon icon-color-4">
+                            <i class="fadeIn animated bx bx-store-alt"></i>
+                        </div>
+                        <div class="menu-title">বাচ্চা মৃত্যু হিসাব</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route("baccha.ojun.index")}}">
+                        <div class="parent-icon icon-color-5">
+                            <i class="fadeIn animated bx bx-layer"></i>
+                        </div>
+                        <div class="menu-title">বাচ্চা ওজন হিসাব</div>
                     </a>
                 </li>
             </ul>
