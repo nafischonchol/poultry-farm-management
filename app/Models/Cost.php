@@ -23,6 +23,7 @@ class Cost extends Model
         'note',
         'price',
         'qty',
+        'bonus_qty',
         'status'
     ];
 }

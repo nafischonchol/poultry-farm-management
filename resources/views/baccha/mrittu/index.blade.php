@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-md-8">
-                            <h4 class="card-title pull-left m-auto">খরচের হিসাব</h4>
+                            <h4 class="card-title pull-left m-auto">বাচ্চা মৃত্যু হিসাব</h4>
                         </div>
                     </div>
                 </div>

@@ -87,7 +87,7 @@
                                     <div class="form-group mb-2 col-md-6" id="bonus_qty_div">
                                         <label>বোনাস পরিমান</label>
                                         <div class="input-group">
-                                            <input type="number" class="form-control" name="bonus_qty" value=0 min=0>
+                                            <input type="number" class="form-control" name="bonus_qty" value=0>
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-12">
