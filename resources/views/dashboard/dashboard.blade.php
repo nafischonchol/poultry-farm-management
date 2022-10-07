@@ -6,7 +6,7 @@
         <section for="order-status">
             <div class="row">
 
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-3 col-sm-6">
                     <div class="card radius-15 bg-primary">
                         <div class="card-body">
                             <div class="media align-items-center text-center">
@@ -20,8 +20,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-3">
-                    <div class="card radius-15 bg-primary">
+                <div class="col-12 col-lg-3 col-sm-6">
+                    <div class="card radius-15 bg-success">
+                        <div class="card-body">
+                            <div class="media align-items-center text-center">
+                                <div class="media-body">
+                                    <p class="mb-0 text-white">মোট মূলধন</p>
+                                    <h4 class="mb-0 font-weight-bold text-white">{{$cost['capital']}}৳</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-sm-6">
+                    <div class="card radius-15 bg-danger">
                         <div class="card-body">
                             <div class="media align-items-center text-center">
                                 <div class="media-body">
@@ -32,21 +44,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-3">
-                    <div class="card radius-15 bg-success">
+                <div class="col-12 col-lg-3 col-sm-6">
+                    <div class="card radius-15 bg-warning">
+                        <div class="card-body">
+                            <div class="media align-items-center text-center">
+                                <div class="media-body">
+                                    <p class="mb-0 text-white">অবশিষ্ট মূলধন</p>
+                                    <h4 class="mb-0 font-weight-bold text-white">{{$cost['left_capital']}}৳</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-3 col-sm-6">
+                    <div class="card radius-15 bg-primary">
                         <div class="card-body">
                             <div class="media align-items-center text-center">
                                 <div class="media-body">
                                     <p class="mb-0 text-white">মোট খাদ্য বস্তা</p>
                                     <h4 class="mb-0 font-weight-bold text-white">
-                                        {{$cost['khaddo_bosta']}} টা
+                                        {{$cost['khaddo_bosta']}} পিস
                                     </h4>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-3 col-sm-6">
                     <div class="card radius-15 bg-info">
                         <div class="card-body">
                             <div class="media align-items-center text-center">
@@ -66,8 +91,36 @@
 
         <section for="stock-status">
             <div class="row">
-                <div class="col-12 col-lg-4 text-center">
-                    <div class="card radius-15">
+                <div class="col-12 col-lg-4 col-sm-6 text-center">
+                    <div class="card radius-15 bg-dark text-light">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="media-body">
+                                    <p class="mb-0">মোট বাচ্চা</p>
+                                    <h4 class="mb-0 font-weight-bold">
+                                        {{$cost['baccha_qty']}}+{{$cost['baccha_bonus_qty']}} ({{$cost['total_baccha_qty']}}) পিস
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 col-sm-6 text-center">
+                    <div class="card radius-15 bg-dark text-light">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="media-body">
+                                    <p class="mb-0">মোট বাচ্চা খরচ</p>
+                                    <h4 class="mb-0 font-weight-bold">
+                                        {{$cost['baccha_cost']}}৳
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 col-sm-6 text-center">
+                    <div class="card radius-15 bg-dark text-light">
                         <div class="card-body">
                             <div class="media align-items-center">
                                 <div class="media-body">
@@ -80,8 +133,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 text-center">
-                    <div class="card radius-15">
+                <div class="col-12 col-lg-4 col-sm-6 text-center">
+                    <div class="card radius-15 bg-dark text-light">
                         <div class="card-body">
                             <div class="media align-items-center">
                                 <div class="media-body">
@@ -94,8 +147,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 text-center">
-                    <div class="card radius-15">
+                <div class="col-12 col-lg-4 col-sm-6 text-center">
+                    <div class="card radius-15 bg-dark text-light">
                         <div class="card-body">
                             <div class="media align-items-center">
                                 <div class="media-body">

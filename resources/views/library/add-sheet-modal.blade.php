@@ -20,6 +20,10 @@
                         <input type="number" class="form-control  radius-30" name="sheet_no" required>
                     </div>
                     <div class="form-group">
+                        <small>শিটের মূলধন</small>
+                        <input type="number" class="form-control radius-30" name="capital" required>
+                    </div>
+                    <div class="form-group">
                         <small>শিট শুরু তারিখ</small>
                         <input type="date" class="form-control  radius-30" name="start_date" value="{{date('Y-m-d')}}" required>
                     </div>

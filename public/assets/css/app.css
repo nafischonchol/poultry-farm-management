@@ -6,7 +6,7 @@ Email: codervent@gmail.com
 File: app.css
 */
 
-/*  
+/*
   - Google Font
   - General
   - Header
@@ -51,7 +51,7 @@ body {
 	letter-spacing: .1px;
 
 	font-size: 14px;
-	
+
 	overflow-x:hidden
 
 }
@@ -79,8 +79,6 @@ a:hover {
 	width: auto;
 
 	height: 70px;
-
-	line-height: 70px;
 
 	background: #fff;
 
@@ -159,7 +157,7 @@ a:hover {
 .logo-icon-2 {
 
 	width: 35px;
-	
+
 	margin-left: 10px;
 
 }
@@ -1269,7 +1267,7 @@ sup {
 		display: none;
 
 	}
-	
+
 	.wrapper.toggled:not(.sidebar-hovered) .sidebar-wrapper .sidebar-header .logo-icon-2 {
 
 		margin-left: 0px;

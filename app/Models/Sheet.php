@@ -14,6 +14,7 @@ class Sheet extends Model
     protected $fillable = [
         'user_id',
         'sheet_no',
+        "capital",
         "current_sheet",
         'start_date',
         'end_date',

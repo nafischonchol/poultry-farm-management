@@ -23,7 +23,9 @@ class CostController extends Controller
 
     public function create()
     {
-        return view("cost.create");
+        $sheet_list = Sheet::where("user_id",Auth::user()->id)->get();
+
+        return view("cost.create",['sheet_list'=>$sheet_list]);
     }
 
     public function store(Request $request)
@@ -39,6 +41,12 @@ class CostController extends Controller
                 'qty' => ['required',  'max:255']
             ]);
             $data = $request->input();
+            if($data['category'] == -1)
+                $data['category'] = trim($data['category_onno']);
+            else
+                $data['category'] = trim($data['category']);
+
+            $data['name'] = trim($data['name']);
             $data['user_id'] = Auth::user()->id;
             Cost::create($data);
             DB::commit();
@@ -56,9 +64,9 @@ class CostController extends Controller
     {
         $query = Cost::where("sheet_no",$request->sheet_no)->where("user_id",Auth::user()->id);
         if($request->category !=0)
-            $query->where("category",$request->category);
+            $query->where("category",trim($request->category));
         if(!empty($request->name))
-            $query->where('name', 'like', '%' . $request->name . '%');
+            $query->where('name', 'like', '%' . trim($request->name) . '%');
 
         $data = $query->get();
         $sheet_list = Sheet::where("user_id",Auth::user()->id)->get();

@@ -24,10 +24,15 @@
                                     <div class="form-group mb-2 col-md-6">
                                         <label>শিট নাম্বার</label><span class="text-danger">*</span>
                                         <select class="form-control" name="sheet_no">
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
+                                           @if (isset($sheet_list[0]))
+                                               @foreach ($sheet_list as $item)
+                                                    @if (session("current_sheet") == $item->sheet_no)
+                                                        <option selected>{{$item->sheet_no}}</option>
+                                                    @else
+                                                        <option>{{$item->sheet_no}}</option>
+                                                    @endif
+                                               @endforeach
+                                           @endif
                                         </select>
                                     </div>
                                     <div class="form-group mb-2 col-md-6">
@@ -39,26 +44,32 @@
                                     <div class="form-group mb-2 col-md-6">
                                         <label>খরচের খাত</label><span class="text-danger">*</span>
                                         <div class="input-group">
-                                            <select class="form-control" name="category">
-                                                <option>বাচ্চা</option>
-                                                <option>খাদ্য বস্তা</option>
+                                            <select class="form-control" name="category" id="category">
+                                                <option value="1">বাচ্চা</option>
+                                                <option>খাদ্য</option>
                                                 <option>ঔষধ</option>
                                                 <option>অটো ভাড়া</option>
-                                                <option>অন্যান্য</option>
+                                                <option value="-1">অন্যান্য</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2 col-md-6" id="category_onno_div">
+                                        <label>অন্যান্য খাত উল্লেখ করুন</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="category_onno"  >
                                         </div>
                                     </div>
 
                                     <div class="form-group mb-2 col-md-6">
                                         <label>প্রোডাক্ট নাম</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="name" required >
+                                            <input type="text" class="form-control" name="name" >
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6">
                                         <label>দোকান এর ঠিকানা</label><span class="text-danger">*</span>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="shop_address" required >
+                                            <input type="text" class="form-control" name="shop_address" >
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6">
@@ -73,7 +84,7 @@
                                             <input type="number" class="form-control" name="qty" required >
                                         </div>
                                     </div>
-                                    <div class="form-group mb-2 col-md-6">
+                                    <div class="form-group mb-2 col-md-6" id="bonus_qty_div">
                                         <label>বোনাস পরিমান</label>
                                         <div class="input-group">
                                             <input type="number" class="form-control" name="bonus_qty" value=0 min=0>
@@ -100,4 +111,21 @@
     </div>
 </section>
 @endsection
-
+@section("js")
+<script>
+    $(document).ready(function(){
+        $("#category_onno_div").hide();
+        $("#category").change(function(){
+            let category = $("#category").val();
+            if(category == -1)
+            {
+                $("#category_onno_div").show();
+            }
+            else
+            {
+                $("#category_onno_div").hide();
+            }
+        })
+    });
+</script>
+@endsection

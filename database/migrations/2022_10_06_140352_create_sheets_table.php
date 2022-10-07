@@ -6,17 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('sheets', function (Blueprint $table) {
             $table->id();
             $table->integer("user_id");
             $table->integer("sheet_no");
+            $table->string("capital")->default("0");
             $table->integer("current_sheet")->default(0)->comment("1 thakle oita current sheet");
             $table->date("start_date")->nullable();
             $table->date("end_date")->nullable();

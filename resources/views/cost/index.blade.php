@@ -38,7 +38,7 @@
                             <select class="form-control text-center" name="category">
                                 <option value=0>খরচের খাত</option>
                                 <option>বাচ্চা</option>
-                                <option>খাদ্য বস্তা</option>
+                                <option>খাদ্য</option>
                                 <option>ঔষধ</option>
                                 <option>অটো ভাড়া</option>
                                 <option>অন্যান্য</option>

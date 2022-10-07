@@ -22,8 +22,8 @@
                                 <div class="text-center p-3">
                                     <img src="{{ asset('assets/images/logo/logo.png') }}" class="img-fluid" alt="logo">
                                     <h4 class="mt-3 mb-1  font-weight-semibold font-18 site-color-text"> Sign In</h4>
-                                    <p class="text-muted  mb-0">Sign in to continue Amardokan</p>
-                                    <p class="text-danger font-weight-bold mb-0">For any problem call: 01810025182</p>
+                                    <p class="text-muted  mb-0">Sign in to continue PFM</p>
+                                    <p class="text-danger font-weight-bold mb-0">For any problem call: 01641377742</p>
                                 </div>
                             </div>
                             <div class="card-body p-0">
