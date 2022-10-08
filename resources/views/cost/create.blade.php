@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6">
-                                        <label>দোকান এর ঠিকানা</label><span class="text-danger">*</span>
+                                        <label>দোকান এর ঠিকানা</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" name="shop_address" >
                                         </div>
@@ -82,9 +82,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6">
-                                        <label>পরিমান</label><span class="text-danger">*</span>
+                                        <label>পরিমান</label>
                                         <div class="input-group">
-                                            <input type="number" class="form-control" name="qty" required >
+                                            <input type="number" class="form-control" name="qty" >
                                         </div>
                                     </div>
                                     <div class="form-group mb-2 col-md-6" id="bonus_qty_div">

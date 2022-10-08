@@ -87,7 +87,7 @@
 
                                             <div class="form-group mb-2 mt-2 col-md-12 col-sm-12">
                                                 <button class="btn btn-primary btn-block site-color-bg form-control"
-                                                    id="btnlogin" type="submit"> Register </button>
+                                                    id="btnlogin" type="submit"> তৈরি করুন </button>
                                             </div>
                                         </div>
                                     </form>

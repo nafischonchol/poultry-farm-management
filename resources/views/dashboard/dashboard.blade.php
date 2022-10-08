@@ -14,7 +14,19 @@
                                     @include("dashboard.set-sheet")
 
                                     <p class="mb-0 text-white" data-toggle="modal" data-target="#sheetSet" style="cursor: pointer;">বর্তমান শিট</p>
-                                    <h4 class="mb-0 font-weight-bold text-white">{{$current_sheet}}</h4>
+                                    <h4 class="mb-0 font-weight-bold text-white">{{$sheet['current_sheet']}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-sm-6">
+                    <div class="card radius-15 bg-primary">
+                        <div class="card-body">
+                            <div class="media align-items-center text-center">
+                                <div class="media-body">
+                                    <p class="mb-0 text-white" data-toggle="modal" data-target="#sheetSet" style="cursor: pointer;">চলতেসে</p>
+                                    <h4 class="mb-0 font-weight-bold text-white">{{$sheet['day']+1}} দিন</h4>
                                 </div>
                             </div>
                         </div>
@@ -56,9 +68,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 col-lg-3 col-sm-6">
+                    <div class="card radius-15 bg-warning">
+                        <div class="card-body">
+                            <div class="media align-items-center text-center">
+                                <div class="media-body">
+                                    <p class="mb-0 text-white">মোট বিক্রয়</p>
+                                    <h4 class="mb-0 font-weight-bold text-white">0৳</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-12 col-lg-3 col-sm-6">
-                    <div class="card radius-15 bg-primary">
+                    <div class="card radius-15 bg-info">
                         <div class="card-body">
                             <div class="media align-items-center text-center">
                                 <div class="media-body">

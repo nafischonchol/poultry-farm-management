@@ -8,6 +8,7 @@ class CostRepository implements ICostRepository
 {
     public function all()
     {
+
         return Cost::where("sheet_no",session('current_sheet'))->where("user_id",Auth::user()->id)->get();
     }
     public function costTotal()

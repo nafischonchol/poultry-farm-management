@@ -5,13 +5,13 @@
     </div>
     <div class="flex-grow-1  text-center">
         <div class=" align-items-center ">
-            <p class="user-name mb-0 h4 d-md-block d-none"><b>Nafis</b></p>
+            <p class="user-name mb-0 h4 d-md-block d-none"><b>{{Auth()->user()->name}}</b></p>
         </div>
     </div>
     <div class="right-topbar ml-auto">
         <ul class="navbar-nav">
             <li class="nav-item dropdown dropdown-lg m-4">
-                <a href="#" class="d-block border-bottom p-1 btn btn-outline-primary btn-sm my-1 pl-3 pr-3" data-toggle="modal" data-target="#sheetAdd"><i class="fadeIn animated bx bx-plus-circle" ></i><span class="mt-3">শিট</span></a>
+                <a href="#" class="d-block border-bottom p-1 btn btn-outline-primary btn-sm my-1 pl-3 pr-3" data-toggle="modal" data-target="#sheetAdd"><span class="mt-3"> নতুন শিট তৈরি করুন</span></a>
                 @include("library.add-sheet-modal")
             </li>
             <li class="nav-item dropdown dropdown-user-profile">
