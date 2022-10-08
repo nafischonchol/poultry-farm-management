@@ -24,6 +24,7 @@ class CostController extends Controller
     public function index()
     {
         $data = $this->mainRepo->all();
+
         $sheet_list = $this->sheet->all();
         return view("cost.index",['data'=>$data,'sheet_list'=>$sheet_list]);
     }
@@ -42,10 +43,8 @@ class CostController extends Controller
             $request->validate([
                 'date' => ['required', 'string', 'max:255'],
                 'sheet_no' => ['required', 'string', 'max:255'],
-                'shop_address' => ['required', 'string'],
                 'category' => ['required', 'string', 'max:255'],
-                'price' => ['required', 'max:255'],
-                'qty' => ['required',  'max:255']
+                'price' => ['required', 'max:255']
             ]);
             $data = $request->input();
             if($data['category'] == -1)
@@ -55,6 +54,10 @@ class CostController extends Controller
                 $data['category'] = trim($data['category']);
                 $data['category_onno'] = NULL;
             }
+            if(empty($data['qty']))
+                $data['qty'] = 0;
+            if(empty($data['bonus_qty']))
+                $data['bonus_qty'] = 0;
 
             $data['name'] = trim($data['name']);
             $data['user_id'] = Auth::user()->id;
@@ -92,10 +95,8 @@ class CostController extends Controller
             $request->validate([
                 'date' => ['required', 'string', 'max:255'],
                 'sheet_no' => ['required', 'string', 'max:255'],
-                'shop_address' => ['required', 'string'],
                 'category' => ['required', 'string', 'max:255'],
-                'price' => ['required', 'max:255'],
-                'qty' => ['required',  'max:255']
+                'price' => ['required', 'max:255']
             ]);
 
             $data = $request->input();
@@ -106,6 +107,11 @@ class CostController extends Controller
                 $data['category'] = trim($data['category']);
                 $data['category_onno'] = NULL;
             }
+
+            if(empty($data['qty']))
+                $data['qty'] = 0;
+            if(empty($data['bonus_qty']))
+                $data['bonus_qty'] = 0;
 
             $data['name'] = trim($data['name']);
             $this->mainRepo->update($data,$id);
