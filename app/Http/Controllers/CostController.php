@@ -55,7 +55,7 @@ class CostController extends Controller
                 $data['category_onno'] = NULL;
             }
             if(empty($data['qty']))
-                $data['qty'] = 0;
+                $data['qty'] = 1;
             if(empty($data['bonus_qty']))
                 $data['bonus_qty'] = 0;
 
@@ -109,7 +109,7 @@ class CostController extends Controller
             }
 
             if(empty($data['qty']))
-                $data['qty'] = 0;
+                $data['qty'] = 1;
             if(empty($data['bonus_qty']))
                 $data['bonus_qty'] = 0;
 
