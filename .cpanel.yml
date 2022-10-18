@@ -1,0 +1,5 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/exosiste/testing-git-control/
+    - /bin/cp * $DEPLOYPATH
+
